@@ -2,104 +2,120 @@ import sys
 
 arg = sys.argv[1]
 
+# print(len(arg))
+
 input = arg[0]
 
 count = 0
 
+
 def match(entrada):
 
     global input, arg, count
- 
-    if(input == entrada):
 
-        if(count < len(arg)):
+    # print(entrada)
 
-            while(True):
-                
-                count=count+1
+    if (input == entrada):
 
-                input=arg[count]
+        if(count+1 < len(arg)):
 
-                print(input)
+            while (count+1 < len(arg)):
 
-                if(not(entrada == '' and input =='')):
+                count = count+1
+            
+                input = arg[count]
+
+                if (not (entrada == ' ' and input == ' ')):
+        
                     break
+        else:
+            # print(entrada)
+            input='EOF'
+
     else:
-        print(count)
-        raise Exception("Entrada no valida:" + entrada+ ' == ' + input )
-                
-def lista ():
+        # print(entrada,input)
+        raise Exception("Entrada no valida: " + input)
 
-    n= num()
-    match('')    
-    r= R()       
 
-    if(r):                            
+def lista():
 
-        for i in range(0,len(r)):
+    n = int(num())
+    r = R()
 
-            if( r[i] > n ):
-                r.insert(i,n)
+    if (r):
+
+        for i in range(0, len(r)):
+
+            if (r[i] > n):
+                r.insert(i, n)
                 return r
-        r.append(n)  
+        r.append(n)
         return r
     else:
         return [n]
 
-def num ():
 
-    return int(digito()+sec())
+def num():
 
-def digito ():
+   
+    return digito()+sec()
 
-    if(input=='0'):
+
+def digito():
+
+    if (input == '0'):
         match('0')
-        return('0')
-    elif(input=='1'):
+        return ('0')
+    elif (input == '1'):
         match('1')
-        return('1')
-    elif(input=='2'):
+        return ('1')
+    elif (input == '2'):
         match('2')
-        return('2')
-    elif(input=='3'):
+        return ('2')
+    elif (input == '3'):
         match('3')
-        return('3')
-    elif(input=='4'):
+        return ('3')
+    elif (input == '4'):
         match('4')
-        return('4')
-    elif(input=='5'):
+        return ('4')
+    elif (input == '5'):
         match('5')
-        return('5')
-    elif(input=='6'):
+        return ('5')
+    elif (input == '6'):
         match('6')
-        return('6')
-    elif(input=='7'):
+        return ('6')
+    elif (input == '7'):
         match('7')
-        return('7')
-    elif(input=='8'):
+        return ('7')
+    elif (input == '8'):
         match('8')
-        return('8')
+        return ('8')
     else:
+        # print(input)
         match('9')
-        return('9')
+        return ('9')
+
 
 def sec():
-    if(input != ''):
-        match('')
+    if (input in '0123456789'):
+        # print(input)
         return num()
     else:
-        return ''
+  
+        return ' '
+
 
 def R():
-    global input,arg,count
-    if(count < len(arg)):
+
+    if (input == ' '):
+        match(' ')
         return lista()
     else:
+        match('EOF')
         return []
 
+
 try:
-    lista()
+    print(lista())
 except Exception as error:
     print(error)
-
-        
