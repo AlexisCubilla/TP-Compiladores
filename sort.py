@@ -1,68 +1,51 @@
 import sys
 
 arg = sys.argv[1]
-
-# print(len(arg))
-
+# arg = "10 1510  0   1         66"
+# arg = "5  1 3     88  2  1aa"
 input = arg[0]
+# input = arg[0]
 
 count = 0
 
 
-def match(entrada):
 
+def match(entrada):
     global input, arg, count
 
-    # print(entrada)
-
     if (input == entrada):
-
-        if(count+1 < len(arg)):
-
-            while (count+1 < len(arg)):
-
-                count = count+1
-            
-                input = arg[count]
-
-                if (not (entrada == ' ' and input == ' ')):
-        
-                    break
+        count = count + 1
+        if(count < len(arg)):
+            input = arg[count]
         else:
-            # print(entrada)
-            input='EOF'
-
+            input= "EOF"
     else:
-        # print(entrada,input)
+        print(count, " count")
         raise Exception("Entrada no valida: " + input)
 
 
 def lista():
+        n = int(num())
+        r = R()
 
-    n = int(num())
-    r = R()
+        if (r):
 
-    if (r):
+            for i in range(0, len(r)):
 
-        for i in range(0, len(r)):
+                if (r[i] > n):
+                    r.insert(i, n)
+                    return r
+            r.append(n)
+            return r
+        else:
+            return [n]
 
-            if (r[i] > n):
-                r.insert(i, n)
-                return r
-        r.append(n)
-        return r
-    else:
-        return [n]
 
 
 def num():
-
-   
-    return digito()+sec()
-
+    return (digito() + sec())
 
 def digito():
-
     if (input == '0'):
         match('0')
         return ('0')
@@ -91,29 +74,32 @@ def digito():
         match('8')
         return ('8')
     else:
-        # print(input)
         match('9')
         return ('9')
 
 
 def sec():
     if (input in '0123456789'):
-        # print(input)
         return num()
     else:
-  
         return ' '
 
 
 def R():
-
     if (input == ' '):
-        match(' ')
+        sep()
         return lista()
     else:
-        match('EOF')
+        match("EOF")
         return []
 
+def R2():
+    if(input ==" "):
+        sep()
+
+def sep():
+    match(" ")
+    R2()
 
 try:
     print(lista())
